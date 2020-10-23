@@ -218,11 +218,11 @@
             switch($("input[name=http_zahtev]:checked")[0].id){
                 case "get":
                     if(tabela=="radio_novosti"){
-                        $.getJSON("http://localhost:8080/rest/api/novosti", function(podaci){
+                        $.getJSON("http://localhost:80/rest/api/novosti", function(podaci){
                             document.getElementById("get_odgovor").innerHTML = JSON.stringify(podaci, null, 2);
                         });
                     }else{
-                        $.getJSON("http://localhost:8080/rest/api/kategorije", function(data){
+                        $.getJSON("http://localhost:80/rest/api/kategorije", function(data){
                             document.getElementById("get_odgovor").innerHTML = JSON.stringify(data, null, 2);
                         });
                     }
@@ -235,7 +235,7 @@
                             "kategorija_id": parseInt($("#kategorija_odabir").val())
                         };
                         console.log(values);
-                        $.post("http://localhost:8080/rest/api/novosti",JSON.stringify(values), function(data){
+                        $.post("http://localhost:80/rest/api/novosti",JSON.stringify(values), function(data){
                             alert("Odgovor od servera> "+data["poruka"]);
                         } );
                     }else{
@@ -243,7 +243,7 @@
                             "kategorija": $("input[name=kategorija_naziv]").val() 
                         };
                         console.log(values);
-                        $.post("http://localhost:8080/rest/api/kategorije",JSON.stringify(values), function(data){
+                        $.post("http://localhost:80/rest/api/kategorije",JSON.stringify(values), function(data){
                             alert("Odgovor od servera> "+data["poruka"]);
                         } );
                     }
@@ -256,7 +256,7 @@
                             "kategorija_id": parseInt($("#kategorija_odabir_put").val())
                         };
                         $.ajax({
-                            url:"http://localhost:8080/rest/api/novosti/"+parseInt($("input[name=novosti_id]").val()),
+                            url:"http://localhost:80/rest/api/novosti/"+parseInt($("input[name=novosti_id]").val()),
                             type:"PUT",
                             data:JSON.stringify(values)
                         }).done(function(data){
@@ -267,7 +267,7 @@
                             "kategorija": $("input[name=kategorija_naziv_put").val() 
                         };
                         $.ajax({
-                            url:"http://localhost:8080/rest/api/kategorije/"+parseInt($("input[name=kategorija_id]").val()),
+                            url:"http://localhost:80/rest/api/kategorije/"+parseInt($("input[name=kategorija_id]").val()),
                             type:"PUT",
                             data:JSON.stringify(values)
                         }).done(function(data){
@@ -278,7 +278,7 @@
                 case "delete":
                     if(tabela=="radio_novosti"){
                         $.ajax({
-                            url:"http://localhost:8080/rest/api/novosti/"+parseInt($("input[name=brisanje]").val()),
+                            url:"http://localhost:80/rest/api/novosti/"+parseInt($("input[name=brisanje]").val()),
                             type:"DELETE",
                             data:JSON.stringify(values)
                         }).done(function(data){
@@ -286,7 +286,7 @@
                         });
                     }else{
                         $.ajax({
-                            url:"http://localhost:8080/rest/api/kategorije/"+parseInt($("input[name=brisanje]").val()),
+                            url:"http://localhost:80/rest/api/kategorije/"+parseInt($("input[name=brisanje]").val()),
                             type:"DELETE",
                             data:JSON.stringify(values)
                         }).done(function(data){
